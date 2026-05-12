@@ -1,0 +1,40 @@
+# Auto-detect text files and normalize to LF in repository
+* text=auto eol=lf
+
+# Windows scripts should keep CRLF for better local compatibility
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Unix shell scripts should always use LF
+*.sh text eol=lf
+
+# Source and config files (explicit for clarity)
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.jsonc text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.svg text eol=lf
+
+# Lockfiles are text and should stay normalized
+package-lock.json text eol=lf
+
+# Common binary assets - disable text diff/normalization
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.woff binary
+*.woff2 binary
