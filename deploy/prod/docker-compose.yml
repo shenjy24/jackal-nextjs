@@ -1,0 +1,24 @@
+name: icebox-prod
+
+services:
+  web:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      target: runner
+      args:
+        NEXT_PUBLIC_SITE_NAME: ${NEXT_PUBLIC_SITE_NAME}
+        NEXT_PUBLIC_SITE_DESCRIPTION: ${NEXT_PUBLIC_SITE_DESCRIPTION}
+    image: icebox-web:prod
+    container_name: icebox-prod-web
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - icebox_prod
+
+networks:
+  icebox_prod:
+    name: icebox_prod_net

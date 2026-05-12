@@ -6,6 +6,7 @@
 - `src/components/`：可复用展示组件。
 - `src/lib/`：工具函数与工具注册数据。
 - `public/`：静态资源与占位素材。
+- `deploy/dev`、`deploy/prod`：开发与生产环境的 Docker Compose、示例环境与辅助脚本（说明见 `docs/docker-deploy.md`）。
 
 新增工具建议流程：
 

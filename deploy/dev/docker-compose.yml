@@ -1,0 +1,28 @@
+name: icebox-dev
+
+services:
+  web:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      target: development
+    container_name: icebox-dev-web
+    entrypoint: ["/bin/sh", "/app/deploy/dev/docker-entrypoint.dev.sh"]
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env
+    volumes:
+      - ../../:/app
+      - icebox_dev_node_modules:/app/node_modules
+      - icebox_dev_next:/app/.next
+    networks:
+      - icebox_dev
+
+networks:
+  icebox_dev:
+    name: icebox_dev_net
+
+volumes:
+  icebox_dev_node_modules:
+  icebox_dev_next:
