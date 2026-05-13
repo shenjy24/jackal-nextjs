@@ -1,0 +1,32 @@
+# multi-tier-environment-model Specification
+
+## Purpose
+TBD - created by archiving change multi-env-docker-deployment. Update Purpose after archive.
+## Requirements
+### Requirement: 三层环境命名与边界
+
+系统 SHALL 将运行环境划分为「本地」「开发」「生产」三层，并在文档中明确定义各层用途、配置来源与部署方式边界。
+
+#### Scenario: 文档可区分三层
+
+- **WHEN** 阅读者查看项目部署与环境说明文档
+- **THEN** 能明确识别本地、开发、生产三层的启动方式及是否使用 Docker
+
+### Requirement: 服务器目录隔离
+
+在服务器上使用 Docker 部署时，系统 MUST 支持开发与生产分别位于不同文件系统目录，且各自拥有独立的编排与配置文件，不得共用同一工作目录内的 `.env` 或 compose 项目名导致状态冲突。
+
+#### Scenario: 双目录部署不冲突
+
+- **WHEN** 运维在同一台主机上分别以目录 A（开发）与目录 B（生产）启动各自 compose 项目
+- **THEN** 两套服务的容器名、网络与数据卷不得因默认命名冲突而无法同时运行
+
+### Requirement: 禁止环境混用表述
+
+系统 SHALL 在规范或文档中要求：生产密钥与开发密钥不得交叉填入对方环境文件；生产构建不得默认读取开发专用变量文件。
+
+#### Scenario: 密钥分离
+
+- **WHEN** 配置生产环境
+- **THEN** 不得依赖仅存在于开发目录或开发示例文件中的密钥定义作为生产唯一来源
+
